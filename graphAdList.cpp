@@ -9,16 +9,19 @@ using namespace std;
 вставьте вершины 1 и 2 в индексы 0 массива. Аналогично, 
 для вершины 1 она имеет двух соседей (т. е. 2 и 0). Таким образом, вставьте вершины 2 и 0 в индексы 1 массива.
  Аналогично, для вершины 2 вставьте ее соседей в массив list. */
+   
+// Додаємо ребро між вершинами i та j (для неорієнтованого графа)
 void addEdge(vector<vector<int>>& adj, int i, int j) {
-    adj[i].push_back(j);
-    adj[j].push_back(i);
+    adj[i].push_back(j);  // Додаємо j в список суміжності i
+    adj[j].push_back(i);  // Додаємо i в список суміжності j (обернене ребро)
 }
 
+// Вивід списку суміжності
 void displayAdjList(const vector<vector<int>>& adj) {
     for (int i = 0; i < adj.size(); i++) {
-        cout << i << ": "; // Print the vertex
+        cout << i << ": ";          // Виводимо вершину
         for (int j : adj[i]) {
-            cout << j << " "; // Print its adjacent
+            cout << j << " ";       // Виводимо сусідів цієї вершини
         }
         cout << endl;
     }
@@ -26,9 +29,10 @@ void displayAdjList(const vector<vector<int>>& adj) {
 
 int main() 
 {
-    int V = 4;
-    vector<vector<int>> adj(V);
+    int V = 4;                    // Кількість вершин
+    vector<vector<int>> adj(V);   // Ініціалізація списку суміжності
 
+    // Додаємо ребра
     addEdge(adj, 0, 1);
     addEdge(adj, 0, 2);
     addEdge(adj, 1, 2);
